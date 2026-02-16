@@ -4,8 +4,5 @@
         "concat_space": {
             "spacing": "one"
         }
-    },
-    "notPath": [
-        "configure.php"
-    ]
+    }
 }
