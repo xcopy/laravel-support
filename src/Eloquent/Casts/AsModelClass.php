@@ -88,6 +88,12 @@ class AsModelClass implements CastsAttributes
             return null;
         }
 
+        throw_unless(
+            is_string($value),
+            InvalidArgumentException::class,
+            sprintf('The value must be a string, %s given.', get_debug_type($value))
+        );
+
         $this->validate($value);
 
         return $value;
