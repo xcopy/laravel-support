@@ -42,9 +42,9 @@ class AsTitledString extends AsTrimmedString
         // Convert to lowercase, then capitalize the first letter
         $result = Str::of($normalized)->lower()->ucfirst();
 
-        // Capitalize after spaces and hyphens, but NOT after apostrophes or numbers
-        // Use [a-zA-Z] instead of \w to exclude digits
-        $result = $result->replaceMatches('/([\s-]+)([a-zA-Z])/', fn ($matches) => $matches[1] . Str::upper($matches[2]));
+        // Capitalize the first letter after spaces and hyphens
+        // Pattern captures whitespace/hyphens followed by any letter (ASCII or Unicode)
+        $result = $result->replaceMatches('/([\s-]+)([a-zA-Z\p{L}])/u', fn ($matches) => $matches[1] . Str::upper($matches[2]));
 
         return $result->toString();
     }
