@@ -50,9 +50,9 @@ class AsModelClass implements CastsAttributes
      *
      * @param  class-string<T>  $type  The interface or class to validate against
      */
-    public static function of(string $type): static
+    public static function of(string $type): self
     {
-        return new static($type);
+        return new self($type);
     }
 
     /**
@@ -87,12 +87,6 @@ class AsModelClass implements CastsAttributes
         if ($value === null) {
             return null;
         }
-
-        throw_unless(
-            is_string($value),
-            InvalidArgumentException::class,
-            sprintf('The value must be a string, %s given.', get_debug_type($value))
-        );
 
         $this->validate($value);
 
