@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
  * ```php
  * enum StatusEnum: string
  * {
- *     use HasLabel;
+ *     use HasLabels;
  *
  *     case Pending = 'pending';
  *     case InProgress = 'in_progress';
@@ -25,7 +25,7 @@ use Illuminate\Support\Str;
  * StatusEnum::InProgress->label(); // 'In Progress'
  * ```
  */
-trait HasLabel
+trait HasLabels
 {
     /**
      * Get the human-readable label for the enum case.

@@ -2,11 +2,11 @@
 
 namespace Jenishev\Laravel\Support\Tests\Unit\Enums\Concerns;
 
-use Jenishev\Laravel\Support\Enums\Concerns\HasLabel;
+use Jenishev\Laravel\Support\Enums\Concerns\HasLabels;
 
 enum StatusEnum: string
 {
-    use HasLabel;
+    use HasLabels;
 
     case Pending = 'pending';
     case Approved = 'approved';

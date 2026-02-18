@@ -20,12 +20,10 @@ namespace Jenishev\Laravel\Support\Enums\Concerns;
  *
  * StatusEnum::choices(); // ['pending' => 'Pending', 'approved' => 'Approved']
  * ```
- *
- * @requires HasLabel trait for label() method
  */
 trait HasChoices
 {
-    use HasLabel;
+    use HasLabels;
 
     /**
      * Get all enum cases as value => label pairs.

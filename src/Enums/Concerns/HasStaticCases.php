@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
  * // Works with UPPER_SNAKE_CASE enum cases
  * enum PaymentStatusEnum: string
  * {
- *     use HasStaticCase;
+ *     use HasStaticCases;
  *
  *     case PENDING = 'pending';
  *     case IN_PROGRESS = 'in_progress';
@@ -32,7 +32,7 @@ use Illuminate\Support\Str;
  * // Also works with PascalCase enum cases
  * enum OrderStatusEnum: string
  * {
- *     use HasStaticCase;
+ *     use HasStaticCases;
  *
  *     case Pending = 'pending';
  *     case InProgress = 'in_progress';
@@ -45,7 +45,7 @@ use Illuminate\Support\Str;
  * OrderStatusEnum::InProgress(); // BadMethodCallException
  * ```
  */
-trait HasStaticCase
+trait HasStaticCases
 {
     /**
      * Handle dynamic static method calls.

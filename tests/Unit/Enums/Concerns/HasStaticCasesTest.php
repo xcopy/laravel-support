@@ -3,11 +3,11 @@
 namespace Jenishev\Laravel\Support\Tests\Unit\Enums\Concerns;
 
 use BadMethodCallException;
-use Jenishev\Laravel\Support\Enums\Concerns\HasStaticCase;
+use Jenishev\Laravel\Support\Enums\Concerns\HasStaticCases;
 
 enum PaymentMethodEnum: string
 {
-    use HasStaticCase;
+    use HasStaticCases;
 
     case CREDIT_CARD = 'credit_card';
     case DEBIT_CARD = 'debit_card';
@@ -18,7 +18,7 @@ enum PaymentMethodEnum: string
 
 enum StateEnum: string
 {
-    use HasStaticCase;
+    use HasStaticCases;
 
     case Pending = 'pending';
     case InProgress = 'in_progress';
