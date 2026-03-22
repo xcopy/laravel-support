@@ -1,6 +1,6 @@
 {
     "name": "xcopy/laravel-support",
-    "description": "This is my package laravel-support",
+    "description": "Useful Laravel support utilities.",
     "keywords": [
         "laravel",
         "support"
