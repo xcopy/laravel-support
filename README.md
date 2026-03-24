@@ -9,7 +9,7 @@ Useful Laravel support utilities.
 ## Installation
 
 ```
-composer require xcopy/laravel-support
+composer require xcopy/laravel-support:dev-main
 ```
 
 ## Features
