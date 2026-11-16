@@ -3,6 +3,7 @@
 namespace Jenishev\Laravel\Support\Tests\Unit\Eloquent\Casts;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use InvalidArgumentException;
 use Jenishev\Laravel\Support\Eloquent\Casts\AsModelClass;
 
@@ -15,6 +16,8 @@ class AnotherModel extends Model {}
 class NonModelClass implements TestInterface {}
 
 beforeEach(function () {
+    $this->originalMorphMap = Relation::morphMap();
+
     $this->model = new class extends Model
     {
         protected $fillable = ['model_type'];
@@ -28,11 +31,34 @@ beforeEach(function () {
     };
 });
 
+afterEach(function () {
+    Relation::morphMap($this->originalMorphMap, false);
+});
+
 it('accepts class that implements interface', function () {
     $this->model->model_type = TestModel::class;
 
     expect($this->model->model_type)->toBe(TestModel::class);
 });
+
+it('accepts a morph-map alias that resolves to a class implementing the interface', function () {
+    Relation::morphMap(['test-model' => TestModel::class]);
+
+    $this->model->model_type = 'test-model';
+
+    expect($this->model->model_type)
+        ->toBe('test-model')
+        ->and($this->model->getAttributes()['model_type'])->toBe('test-model');
+});
+
+it('reports the resolved class when a morph-map alias does not satisfy the required interface', function () {
+    Relation::morphMap(['another-model' => AnotherModel::class]);
+
+    $this->model->model_type = 'another-model';
+})->throws(
+    InvalidArgumentException::class,
+    sprintf('Class [%s] must implement [%s] or extend it.', AnotherModel::class, TestInterface::class)
+);
 
 it('returns class name on get', function () {
     $this->model->model_type = TestModel::class;
